@@ -57,6 +57,7 @@ public class CustomerController {
 
 	@PutMapping("/update-customer")
 	public Object updateCustomer(@RequestBody Customer customer) {
+		logger.info("Customer Details="+customer.toString());
 		return customerService.updateCustomer(customer);
 	}
 
