@@ -1,5 +1,9 @@
 package com.edusol.customer.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +20,18 @@ import com.edusol.customer.service.CustomerService;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private CustomerService customerService;
 
 	@GetMapping("/get-customers")
 	public Object getCustomers() {
-
-		return customerService.getCustomers();
+		@SuppressWarnings("unchecked")
+		List<Customer> customers = (List<Customer>) customerService.getCustomers();
+		logger.info(customers.toString());
+		return customers;
 	}
 	
 	@GetMapping("/get-customerbyid")
