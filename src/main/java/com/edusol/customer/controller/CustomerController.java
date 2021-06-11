@@ -51,6 +51,7 @@ public class CustomerController {
 
 	@PostMapping("add-customer")
 	public Object addCustomer(@RequestBody Customer customer) {
+		logger.info(customer.toString());
 		return customerService.addCustomer(customer);
 	}
 
